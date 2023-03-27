@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Photo App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="./Photo_App_files/all.min.css">
+    <script defer="defer" src="./Photo_App_files/main.4aee3d44.js.download"></script>
+    <link href="./Photo_App_files/main.7f384d39.css" rel="stylesheet">
+</head>
+
+<body style="overflow-y: auto;">
+    <div id="root">
+        <div>
+            <nav class="main-nav">
+                <h1>Photo App</h1>
+                <ul>
+                    <li>
+                        <a href="https://photo-app-secured.herokuapp.com/api">API Docs</a>
+                    </li>
+                    <li>
+                        <span>webdev</span>
+                    </li>
+                    <li>
+                        <a href="https://photo-app-secured.herokuapp.com/logout">Sign out</a>
+                    </li>
+                </ul>
+            </nav>
+            <aside>
+                <header>
+                    <div>
+                        <img class="pic" src="./Photo_App_files/998-30x30.jpg" alt="Profile pic for webdev">
+                        <h2>webdev</h2>
+                    </div>
+                </header>
+                <div class="suggestions">
+                    <p class="suggestion-text">Suggestions for you</p>
+                    <div>
+                        <section id="suggestion-2">
+                            <img src="./Photo_App_files/46-30x30.jpg" class="pic" alt="Profile pic for sarah">
+                            <div>
+                                <p>sarah</p>
+                                <p>suggested for you</p>
+                            </div>
+                            <div>
+                                <button role="switch" class="link following" aria-checked="false"
+                                    aria-label="Follow sarah">follow</button>
+                            </div>
+                        </section>
+                        <section id="suggestion-4">
+                            <img src="./Photo_App_files/642-30x30.jpg" class="pic" alt="Profile pic for manish">
+                            <div>
+                                <p>manish</p>
+                                <p>suggested for you</p>
+                            </div>
+                            <div>
+                                <button role="switch" class="link following" aria-checked="false"
+                                    aria-label="Follow manish">
+                                    follow</button>
+                            </div>
+                        </section>
+                        <section id="suggestion-6">
+                            <img src="./Photo_App_files/627-30x30.jpg" class="pic" alt="Profile pic for hayden">
+                            <div>
+                                <p>hayden</p>
+                                <p>suggested for you</p>
+                            </div>
+                            <div>
+                                <button role="switch" class="link following" aria-checked="false"
+                                    aria-label="Follow hayden">
+                                    follow</button>
+                            </div>
+                        </section>
+                        <section id="suggestion-8">
+                            <img src="./Photo_App_files/617-30x30.jpg" class="pic" alt="Profile pic for noah">
+                            <div>
+                                <p>noah</p>
+                                <p>suggested for you</p>
+                            </div>
+                            <div>
+                                <button role="switch" class="link following" aria-checked="false"
+                                    aria-label="Follow noah">
+                                    follow</button>
+                            </div>
+                        </section>
+                        <section id="suggestion-9">
+                            <img src="./Photo_App_files/539-30x30.jpg" class="pic" alt="Profile pic for joel">
+                            <div>
+                                <p>joel</p>
+                                <p>suggested for you</p>
+                            </div>
+                            <div>
+                                <button role="switch" class="link following" aria-checked="false"
+                                    aria-label="Follow joel">
+                                    follow</button>
+                            </div>
+                        </section>
+                        <section id="suggestion-11">
+                            <img src="./Photo_App_files/958-30x30.jpg" class="pic" alt="Profile pic for luke">
+                            <div>
+                                <p>luke</p>
+                                <p>suggested for you</p>
+                            </div>
+                            <div>
+                                <button role="switch" class="link following" aria-checked="false"
+                                    aria-label="Follow luke">
+                                    follow</button>
+                            </div>
+                        </section>
+                        <section id="suggestion-12">
+                            <img src="./Photo_App_files/784-30x30.jpg" class="pic" alt="Profile pic for alex">
+                            <div>
+                                <p>alex</p>
+                                <p>suggested for you</p>
+                            </div>
+                            <div>
+                                <button role="switch" class="link following" aria-checked="false"
+                                    aria-label="Follow alex">
+                                    follow</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </aside>
+            <main class="content">
+                <header class="stories">
+                    <div>
+                        <img src="./Photo_App_files/1068-30x30.jpg" class="pic" alt="profile pic for haley">
+                        <p>haley</p>
+                    </div>
+                    <div>
+                        <img src="./Photo_App_files/1057-30x30.jpg" class="pic" alt="profile pic for eli">
+                        <p>eli</p>
+                    </div>
+                    <div>
+                        <img src="./Photo_App_files/401-30x30.jpg" class="pic" alt="profile pic for chase">
+                        <p>chase</p>
+                    </div>
+                    <div>
+                        <img src="./Photo_App_files/784-30x30.jpg" class="pic" alt="profile pic for james">
+                        <p>james</p>
+                    </div>
+                    <div>
+                        <img src="./Photo_App_files/971-30x30.jpg" class="pic" alt="profile pic for jazz">
+                        <p>jazz</p>
+                    </div>
+                    <div>
+                        <img src="./Photo_App_files/594-30x30.jpg" class="pic" alt="profile pic for mason">
+                        <p>mason</p>
+                    </div>
+                </header>
+                
+                <div id="posts">
+                    <section class="card">
+                        <div class="header">
+                            <h3>jazz</h3>
+                            <i class="fa fa-dots"></i>
+                        </div>
+                        <img src="./Photo_App_files/SpongeBob_SquarePants_character.svg.png" alt="Image posted by jazz"
+                            width="300" height="300" title="" style="">
+                        <div class="info">
+                            <div class="buttons">
+                                <div>
+                                    <button role="switch" class="like" aria-label="Like Button" aria-checked="false">
+                                        <i class="far fa-heart">
+                                        </i>
+                                    </button>
+                                    <i class="far fa-comment">
+
+                                    </i>
+                                    <i class="far fa-paper-plane">
+
+                                    </i>
+                                </div>
+                                <div>
+                                    <button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="true">
+                                        <i class="fas fa-bookmark">
+
+                                        </i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="likes">
+                                <strong>3 likes</strong>
+                            </p>
+                            <div class="caption">
+                                <p>
+                                    <strong>jazz</strong>
+                                    New caption
+                                </p>
+                                <p class="timestamp">11 hours ago</p>
+                            </div>
+                            <button class="link">
+                                View all 4 comments
+                            </button>
+                            <div class="comments">
+                                <div>
+                                    <p>
+                                        <strong>webdev</strong>
+                                        Test caption
+                                    </p>
+                                    <p class="timestamp">
+                                        2 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder">
+                                <input class="comment-textbox" aria-label="Add a comment" placeholder="Add a comment..."
+                                    value="">
+                            </div>
+                            <button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>dev</h3>
+                            <i class="fa fa-dots"></i>
+                        </div>
+                        <img src="./Photo_App_files/606-600x430.jpg" alt="Image posted by dev" width="300" height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div>
+                                    <button role="switch" class="like" aria-label="Like Button" aria-checked="true">
+                                        <i class="fas fa-heart"></i></button>
+                                    <i class="far fa-comment"></i>
+                                    <i class="far fa-paper-plane"></i>
+                                </div>
+                                <div>
+                                    <button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="true">
+                                        <i class="fas fa-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="likes">
+                                <strong>3 likes</strong>
+                            </p>
+                            <div class="caption">
+                                <p><strong>dev</strong>
+                                    Mr do ahead development nearly position before son activity near southern hold
+                                    example decision front conference pattern stock case or.</p>
+                                <p class="timestamp">11 hours ago</p>
+                            </div>
+                            <button class="link">
+                                View all 5 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>webdev</strong>sdfsdf
+                                    </p>
+                                    <p class="timestamp">Just now</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder">
+                                <input class="comment-textbox" aria-label="Add a comment" placeholder="Add a comment..."
+                                    value="">
+                            </div>
+                            <button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>caleb</h3>
+                            <i class="fa fa-dots">
+                            </i>
+                        </div>
+                        <img src="./Photo_App_files/689-600x430.jpg" alt="Image posted by caleb" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div>
+                                    <button role="switch" class="like" aria-label="Like Button" aria-checked="false">
+                                        <i class="far fa-heart">
+                                        </i>
+                                    </button>
+                                    <i class="far fa-comment">
+                                    </i>
+                                    <i class="far fa-paper-plane">
+                                    </i>
+                                </div>
+                                <div>
+                                    <button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false">
+                                        <i class="far fa-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="likes">
+                                <strong>2 likes</strong>
+                            </p>
+                            <div class="caption">
+                                <p><strong>caleb</strong>Might discussion agency above then whole media to response let
+                                    can free PM carry generation although special wear to method simply painting
+                                    understand data available hard teach always statement cell church glass brother
+                                    center describe east call feel which item window cup mother start attack catch five.
+                                </p>
+                                <p class="timestamp">11 hours ago</p>
+                            </div><button class="link">View all 3 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>chase</strong>Social memory individual top firm fine language eye city
+                                        general fly north special lose data indicate present information person
+                                        conference area old hour such find fine field his realize simple operation these
+                                        listen sing power describe few third authority shake accept space true answer.
+                                    </p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>jazz</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/654-600x430.jpg" alt="Image posted by jazz" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="true"><i
+                                            class="fas fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>4 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>jazz</strong>Benefit send protect voice term trial nation Democrat little
+                                    kind them hope might small several.</p>
+                                <p class="timestamp">12 hours ago</p>
+                            </div><button class="link">View all 5 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>james</strong>Perhaps painting finally provide listen agreement head
+                                        single civil kitchen indicate who how prove major source mention mother pick
+                                        history animal.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>cameron</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/851-600x430.jpg" alt="Image posted by cameron" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="true"><i
+                                            class="fas fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="true"><i class="fas fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>2 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>cameron</strong>Me head force during without real scene example process who
+                                    nearly public school expect animal four hundred something language sense interview
+                                    democratic certain blue respond also moment center lawyer second Mrs reflect special
+                                    note bill ball recognize want most player throw.</p>
+                                <p class="timestamp">12 hours ago</p>
+                            </div>
+                            <div class="comments"></div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>haley</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/125-600x430.jpg" alt="Image posted by haley" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="true"><i
+                                            class="fas fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="true"><i class="fas fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>2 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>haley</strong>Deep itself system system eat by home little president high
+                                    account too think something write also while population generation.</p>
+                                <p class="timestamp">12 hours ago</p>
+                            </div><button class="link">View all 3 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>webdev</strong>Weee!</p>
+                                    <p class="timestamp">Just now</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>chase</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/154-600x430.jpg" alt="Image posted by chase" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>0 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>chase</strong>Difficult research president down here low anyone world firm
+                                    important cover individual throw contain.</p>
+                                <p class="timestamp">14 hours ago</p>
+                            </div><button class="link">View all 2 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>matt</strong>Build let it line prevent understand although upon much
+                                        ground enter measure eye whether their.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>james</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/342-600x430.jpg" alt="Image posted by james" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>4 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>james</strong>World all whom few strategy conference continue himself measure
+                                    seek picture professor huge free forget teach nothing end area policy exist blue
+                                    medical growth trial government forward human under scene director ground.</p>
+                                <p class="timestamp">16 hours ago</p>
+                            </div><button class="link">View all 5 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>webdev</strong>test</p>
+                                    <p class="timestamp">Just now</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>dev</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/1028-600x430.jpg" alt="Image posted by dev" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>1 like</strong></p>
+                            <div class="caption">
+                                <p><strong>dev</strong>Push if federal attorney many show year him anything wish pick
+                                    government exist ahead hit seat like occur natural by hope which population audience
+                                    most never goal land drug wrong energy write care a everybody those agreement decade
+                                    kind Republican if report record avoid budget.</p>
+                                <p class="timestamp">16 hours ago</p>
+                            </div><button class="link">View all 4 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>cameron</strong>Point list group them read so entire out picture kitchen
+                                        star political likely available sure minute care purpose into movie low for
+                                        magazine player reality modern easy than finally might avoid market democratic
+                                        art.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>caleb</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/845-600x430.jpg" alt="Image posted by caleb" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="true"><i
+                                            class="fas fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="true"><i class="fas fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>4 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>caleb</strong>Form even give she behind ask continue analysis professor glass
+                                    quickly painting language baby despite brother west practice service add mouth
+                                    indeed music truth skin issue hair read marriage other student raise car statement
+                                    under financial must.</p>
+                                <p class="timestamp">16 hours ago</p>
+                            </div>
+                            <div class="comments"></div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>cameron</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/719-600x430.jpg" alt="Image posted by cameron" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="true"><i
+                                            class="fas fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>4 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>cameron</strong>Treatment major while it area room major PM stand arm here
+                                    build event speech indicate yeah reveal little go live physical result.</p>
+                                <p class="timestamp">19 hours ago</p>
+                            </div>
+                            <div class="comments"></div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>lake</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/975-600x430.jpg" alt="Image posted by lake" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>0 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>lake</strong>Beat lay future particular head thousand fill feeling notice
+                                    clear media east doctor one he treat week relationship nothing develop behind.</p>
+                                <p class="timestamp">20 hours ago</p>
+                            </div><button class="link">View all 5 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>daniel</strong>Political strategy future hit support yard movement
+                                        company must explain choice power per need resource remember fine look southern
+                                        attention boy ready idea room page production family without despite lot since
+                                        court sign point the defense growth meeting.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>lake</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/639-600x430.jpg" alt="Image posted by lake" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>0 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>lake</strong>Attention mention can important happen field go boy lot seven
+                                    best network learn strong try month probably serious cut street marriage time speech
+                                    see course pay administration put ball PM item camera without test me.</p>
+                                <p class="timestamp">20 hours ago</p>
+                            </div><button class="link">View all 3 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>eli</strong>Strategy difficult baby fear guy trip where well poor animal
+                                        listen show to look level history class soldier down.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>eli</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/662-600x430.jpg" alt="Image posted by eli" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>4 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>eli</strong>Develop little though threat safe agree conference wind future
+                                    new minute strategy environmental require test over voice born hold what him
+                                    response room including cell book building enter any walk south Mrs well training
+                                    more when industry simple thank produce candidate up letter anything thank hear stop
+                                    occur something people detail also character dark to past time management already
+                                    heavy opportunity mouth.</p>
+                                <p class="timestamp">20 hours ago</p>
+                            </div><button class="link">View all 5 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>jacob</strong>Also responsibility actually cover travel evening save
+                                        investment eye industry number inside environment down marriage establish their
+                                        perhaps billion develop series among mission office picture respond democratic
+                                        offer pretty will treatment much whose write animal plant who alone week east.
+                                    </p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>mason</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/892-600x430.jpg" alt="Image posted by mason" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>2 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>mason</strong>Individual respond talk less or beyond those risk system back
+                                    recently then generation everything market behavior action.</p>
+                                <p class="timestamp">21 hours ago</p>
+                            </div>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>daniel</strong>East central rich decide miss the near north yourself
+                                        question cost officer center black start most hospital charge board.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>cameron</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/430-600x430.jpg" alt="Image posted by cameron" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>1 like</strong></p>
+                            <div class="caption">
+                                <p><strong>cameron</strong>Prevent position meeting decision food of car economy anyone
+                                    indeed world travel knowledge back paper what dream relationship teacher.</p>
+                                <p class="timestamp">21 hours ago</p>
+                            </div><button class="link">View all 5 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>alan</strong>Energy according election size unit information let appear
+                                        most agent stay response authority affect hand deal director race none image end
+                                        field stop capital throw rate main town serve at sing carry my blue condition
+                                        fill old production now.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>caleb</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/785-600x430.jpg" alt="Image posted by caleb" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>0 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>caleb</strong>More much until meet opportunity wide prepare loss bad mean
+                                    budget world hundred effort movement up class maintain child thank hope purpose draw
+                                    politics process book cover employee call through guess.</p>
+                                <p class="timestamp">21 hours ago</p>
+                            </div>
+                            <div class="comments"></div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>webdev</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/953-600x430.jpg" alt="Image posted by webdev" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>5 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>webdev</strong>Material successful production almost play somebody rock safe
+                                    human list candidate per pull.</p>
+                                <p class="timestamp">23 hours ago</p>
+                            </div><button class="link">View all 4 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>jazz</strong>Technology part leg why eye window management interview ten
+                                        result wife part another any Democrat manage project skin believe exist
+                                        individual arm leader green environmental statement small hot only.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>jazz</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/337-600x430.jpg" alt="Image posted by jazz" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="false"><i
+                                            class="far fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="true"><i class="fas fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>2 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>jazz</strong>Street health agreement officer drive house price investment
+                                    media discover appear hear rule feeling bar role impact direction live name wide
+                                    long speak practice impact turn role hotel training discussion final now five break
+                                    produce question.</p>
+                                <p class="timestamp">1 day ago</p>
+                            </div><button class="link">View all 3 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>daniel</strong>Various himself lay reason those affect chance memory
+                                        short major parent begin require mention foot recognize capital generation
+                                        player which full save message stage.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                    <section class="card">
+                        <div class="header">
+                            <h3>jazz</h3><i class="fa fa-dots"></i>
+                        </div><img src="./Photo_App_files/323-600x430.jpg" alt="Image posted by jazz" width="300"
+                            height="300">
+                        <div class="info">
+                            <div class="buttons">
+                                <div><button role="switch" class="like" aria-label="Like Button" aria-checked="true"><i
+                                            class="fas fa-heart"></i></button><i class="far fa-comment"></i><i
+                                        class="far fa-paper-plane"></i></div>
+                                <div><button role="switch" class="bookmark" aria-label="Bookmark Button"
+                                        aria-checked="false"><i class="far fa-bookmark"></i></button></div>
+                            </div>
+                            <p class="likes"><strong>2 likes</strong></p>
+                            <div class="caption">
+                                <p><strong>jazz</strong>High include old stay and already author region new right
+                                    relationship our behind book relate catch increase show space meet able character
+                                    glass low indicate country in everything pass nothing responsibility thought doctor
+                                    dog message message small really color form early realize discussion focus easy tree
+                                    nation.</p>
+                                <p class="timestamp">1 day ago</p>
+                            </div><button class="link">View all 2 comments</button>
+                            <div class="comments">
+                                <div>
+                                    <p><strong>webdev</strong>Mr several everything exactly under modern have three up
+                                        increase base exactly under dinner option impact several task nice last feel
+                                        direction sell too soon street rock protect decade month cold strategy guy.</p>
+                                    <p class="timestamp">5 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="add-comment">
+                            <div class="input-holder"><input class="comment-textbox" aria-label="Add a comment"
+                                    placeholder="Add a comment..." value=""></div><button class="link">Post</button>
+                        </form>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div id="modal"></div><img src="./Photo_App_files/SpongeBob_SquarePants_character.svg"
+        style="position: fixed !important; visibility: hidden !important; max-width: 500px !important;">
+</body>
+<div
+    style="padding: 0px; margin: 3px 3px 20px; background: padding-box padding-box rgb(248, 248, 255); border: 3px solid rgba(242, 242, 242, 0.6); border-radius: 2px; box-shadow: rgb(102, 102, 102) 0px 0px 2px; visibility: visible; display: none; z-index: 2147483647; inset: 12px auto auto 696px; width: 0px; height: 0px; position: fixed !important; box-sizing: content-box !important; max-width: none !important; max-height: none !important;">
+    <img alt=""
+        style="display: block; background: none; position: relative; width: 100%; height: 100%; max-width: inherit; max-height: inherit; margin: 0px; padding: 0px; border: 0px; visibility: inherit !important; image-orientation: initial !important;"><video
+        poster="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" autoplay=""
+        style="display: none; background: none; position: relative; width: 100%; height: 100%; max-width: inherit; max-height: inherit; margin: 0px; padding: 0px; border: 0px; box-shadow: rgb(241, 101, 41) 0px 0px 0px 1px; visibility: inherit !important;"></video>
+    <div
+        style="left: 0px; right: auto; display: none; cursor: default; position: absolute; width: auto; height: auto; border: 0px; white-space: nowrap; font: 13px / 1.4em &quot;Trebuchet MS&quot;, sans-serif; box-shadow: rgb(221, 221, 221) 0px 0px 1px inset; padding: 0px 4px; border-radius: 3px; background: rgba(0, 0, 0, 0.75) !important; color: rgb(255, 255, 255) !important; top: -18px;">
+        <b style="display: none; transition: background-color 0.1s ease 0s; border-radius: 3px; padding: 0px 2px;"></b>
+        <b style="display: none;"></b> <span style="color: inherit; display: inline;">Image posted by jazz</span></div>
+</div><img alt="" draggable="false"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOng9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWluWU1pbiBub25lIj48Zz48cGF0aCBpZD0icCIgZD0iTTMzIDQyYTEgMSAwIDAgMSA1NS0yMCAzNiAzNiAwIDAgMC01NSAyMCIvPjx1c2UgeDpocmVmPSIjcCIgdHJhbnNmb3JtPSJyb3RhdGUoNzIgNTAgNTApIi8+PHVzZSB4OmhyZWY9IiNwIiB0cmFuc2Zvcm09InJvdGF0ZSgxNDQgNTAgNTApIi8+PHVzZSB4OmhyZWY9IiNwIiB0cmFuc2Zvcm09InJvdGF0ZSgyMTYgNTAgNTApIi8+PHVzZSB4OmhyZWY9IiNwIiB0cmFuc2Zvcm09InJvdGF0ZSgyODggNTAgNTApIi8+PGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHZhbHVlcz0iMzYwIDUwIDUwOzAgNTAgNTAiIGR1cj0iMS44cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L2c+PC9zdmc+"
+    style="padding: 5px; background-clip: padding-box; width: 38px; height: 38px; z-index: 2147483647; display: none; inset: auto; margin: 0px; transition: background-color 0.5s ease 0s, opacity 0.2s ease 0s, top 0.15s ease-out 0s, left 0.15s ease-out 0s; border-radius: 50% !important; box-shadow: rgb(166, 166, 166) 0px 0px 5px 1px !important; position: fixed !important; box-sizing: border-box !important; opacity: 0; background-color: rgb(255, 255, 255);">
+
+</html>

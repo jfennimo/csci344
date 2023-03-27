@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* create a selector */
+.card {
+    border: solid gray 1px;
+    width: 300px;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card-data {
+    padding: 10px;
+}

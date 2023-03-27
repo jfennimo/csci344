@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo App</title>
+</head>
+<body style="overflow-y: auto;">
+
+    <!-- I used the following sources for formatting if I ran into issues:
+    https://www.youtube.com/watch?v=f9fqiNM30ik
+    https://www.geeksforgeeks.org/instagram-clone-using-html-css/ -->
+
+
+    <!-- Navigation bar -->
+    <nav class="nav-bar">
+        <div class="nav-wrapper">
+            <p class="title">Photo App</p>
+            <p class="you">jfennimo</p>
+            <p class="signout">Sign Out</p>
+        </div>
+    </nav>
+
+    <!-- Stories panel -->
+    <section class="main">
+        <div class="wrapper">
+            <div class="left-col">
+                
+                <div class="story-wrapper">
+                    <div class="story-card">
+                        <div class="profile-pic"><img src="https://i.pinimg.com/736x/ba/92/7f/ba927ff34cd961ce2c184d47e8ead9f6.jpg" alt="funny cat"></div>
+                        <p class="username">cat_lover</p>
+                    </div>
+                    <div class="story-card">
+                        <div class="profile-pic"><img src="https://wallpapers-clan.com/wp-content/uploads/2022/07/funny-cat-2.jpg" alt="cat with tongue out"></div>
+                        <p class="username">goober</p>
+                    </div>
+                    <div class="story-card">
+                        <div class="profile-pic"><img src="https://media.istockphoto.com/id/1215945319/photo/portrait-of-intelligent-goose-with-glasses-and-a-bow-tie-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=eA99Qh4xCczRrMZ963VvmcMu6xzFjdRuLHtW37n_h30=" alt="goose with glasses and bowtie"></div>
+                        <p class="username">silly_goose</p>
+                    </div>
+                    <div class="story-card">
+                        <div class="profile-pic"><img src="https://wallpapers.com/images/hd/chicken-little-ugly-duckling-bvcif46y5arh8iqe.jpg" alt="really ugly duckling"></div>
+                        <p class="username">ugly_duckling</p>
+                    </div>
+                </div>
+
+                <!-- Card/Timeline -->
+                <div class="timeline">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://i.pinimg.com/736x/ba/92/7f/ba927ff34cd961ce2c184d47e8ead9f6.jpg" alt="funny cat"></div>
+                            <p class="username">cat_lover</p>
+                        </div>
+                    </div>
+                    <img src="https://i.ytimg.com/vi/YSHDBB6id4A/maxresdefault.jpg" class="post-image" alt="cat in toilet">
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="./files/like.PNG" class="icon" alt="like icon">
+                            <img src="./files/comment.PNG" class="icon" alt="comment icon">
+                            <img src="./files/send.PNG" class="icon" alt="send post icon">
+                            <img src="./files/save.PNG" class="save icon" alt="save icon">
+                        </div>
+                        <p class="likes">9,999 likes</p>
+                        <p class="description"><span>cat_lover </span>toilet cat lol!!!!</p>
+                        <p class="post-time">10 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="./files/smile.PNG" class="icon" alt="emoji icon">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://i.pinimg.com/736x/ba/92/7f/ba927ff34cd961ce2c184d47e8ead9f6.jpg" alt="funny cat"></div>
+                            <p class="username">cat_lover</p>
+                        </div>
+                    </div>
+                    <img src="http://s3.amazonaws.com/photography.prod.demandstudios.com/c639593c-3f0b-48a5-a623-13f772f411ba.png" class="post-image" alt="spooked cat">
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="./files/like.PNG" class="icon" alt="like icon">
+                            <img src="./files/comment.PNG" class="icon" alt="comment icon">
+                            <img src="./files/send.PNG" class="icon" alt="send post icon">
+                            <img src="./files/save.PNG" class="save icon" alt="save icon">
+                        </div>
+                        <p class="likes">9,999 likes</p>
+                        <p class="description"><span>cat_lover </span>scared!!!</p>
+                        <p class="post-time">20 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="./files/smile.PNG" class="icon" alt="emoji icon">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://i.pinimg.com/736x/ba/92/7f/ba927ff34cd961ce2c184d47e8ead9f6.jpg" alt="funny cat"></div>
+                            <p class="username">cat_lover</p>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnVubnklMjBjYXR8ZW58MHx8MHx8&w=1000&q=80" class="post-image" alt="cat with sunglasses">
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="./files/like.PNG" class="icon" alt="like icon">
+                            <img src="./files/comment.PNG" class="icon" alt="comment icon">
+                            <img src="./files/send.PNG" class="icon" alt="send post icon">
+                            <img src="./files/save.PNG" class="save icon" alt="save icon">
+                        </div>
+                        <p class="likes">9,999 likes</p>
+                        <p class="description"><span>cat_lover </span>badass</p>
+                        <p class="post-time">30 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="./files/smile.PNG" class="icon" alt="emoji icon">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://i.pinimg.com/736x/ba/92/7f/ba927ff34cd961ce2c184d47e8ead9f6.jpg" alt="funny cat"></div>
+                            <p class="username">cat_lover</p>
+                        </div>
+                    </div>
+                    <img src="https://play-lh.googleusercontent.com/jkpabs01pnEU5Jc9U3MuWdwwoWi8v7x33RZNYyLP2T8a2j1csnjOy3_-KI6JU8JntlNW" class="post-image" alt="zoom in on cat's face">
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="./files/like.PNG" class="icon" alt="like icon">
+                            <img src="./files/comment.PNG" class="icon" alt="comment icon">
+                            <img src="./files/send.PNG" class="icon" alt="send post icon">
+                            <img src="./files/save.PNG" class="save icon" alt="save icon">
+                        </div>
+                        <p class="likes">9,999 likes</p>
+                        <p class="description"><span>cat_lover </span>sneef</p>
+                        <p class="post-time">40 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="./files/smile.PNG" class="icon" alt="emoji icon">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://i.pinimg.com/736x/ba/92/7f/ba927ff34cd961ce2c184d47e8ead9f6.jpg" alt="funny cat"></div>
+                            <p class="username">cat_lover</p>
+                        </div>
+                    </div>
+                    <img src="https://i.pinimg.com/originals/1f/b3/7d/1fb37dd59cbe77f2a9ec479fb08808b2.jpg" class="post-image" alt="cat who loves coca cola">
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="./files/like.PNG" class="icon" alt="like icon">
+                            <img src="./files/comment.PNG" class="icon" alt="comment icon">
+                            <img src="./files/send.PNG" class="icon" alt="send post icon">
+                            <img src="./files/save.PNG" class="save icon" alt="save icon">
+                        </div>
+                        <p class="likes">9,999 likes</p>
+                        <p class="description"><span>cat_lover </span>cokey cola</p>
+                        <p class="post-time">50 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="./files/smile.PNG" class="icon" alt="emoji icon">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile and recommendations -->
+            <div class="right-col">
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="./files/Birch_Mudkip.jpg" alt="Mudkip">
+                    </div>
+                    <div>
+                        <p class="username">jfennimo</p>
+                    </div>
+                    <button class="action-btn">switch</button>
+                </div>
+                <p class="suggestion-text">Suggestions for you</p>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="./files/cool_dude_30x30.png" alt="Cool dude">
+                    </div>
+                    <div>
+                        <p class="username">cool_dude</p>
+                        <p class="sub-text">suggested for you</p>
+                    </div>
+                    <button class="action-btn">follow</button>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="./files/qt_girl_30x30.png" alt="Qt girl">
+                    </div>
+                    <div>
+                        <p class="username">qt_girl</p>
+                        <p class="sub-text">suggested for you</p>
+                    </div>
+                    <button class="action-btn">follow</button>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="./files/silly_lad_30x30.jpg" alt="Silly lad">
+                    </div>
+                    <div>
+                        <p class="username">silly_lad</p>
+                        <p class="sub-text">suggested for you</p>
+                    </div>
+                    <button class="action-btn">follow</button>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="./files/smarty_pants_30x30.png" alt="Smarty pants">
+                    </div>
+                    <div>
+                        <p class="username">smarty_pants</p>
+                        <p class="sub-text">suggested for you</p>
+                    </div>
+                    <button class="action-btn">follow</button>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="./files/anxious_mutt_30x30.png" alt="Anxious mutt">
+                    </div>
+                    <div>
+                        <p class="username">anxious_mutt</p>
+                        <p class="sub-text">suggested for you</p>
+                    </div>
+                    <button class="action-btn">follow</button>
+                </div>
+            </div>
+    </div>
+    </section>
+    
+</body>
+</html>

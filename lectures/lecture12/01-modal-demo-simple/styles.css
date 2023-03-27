@@ -1,0 +1,38 @@
+body * {
+    box-sizing: border-box;
+}
+
+/* Modal background: blocks the screen from any accidental interactions */
+.modal-bg {
+    background: rgba(50, 50, 50, 0.8);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Actual modal */
+.modal {
+    width: 70vw;
+    height: auto;
+    max-height: 60vh;
+    min-height: 40vh;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.close {
+    align-self: flex-end;
+}
+
+/* class that hides the modal by default */
+.hidden {
+    display: none !important;
+}

@@ -1,0 +1,15 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Audiowide", sans-serif;
+    margin: 0;
+}
+
+/* create additional rules below:  */
+h2{font-family: "VT323", serif;}

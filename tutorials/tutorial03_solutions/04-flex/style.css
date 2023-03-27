@@ -1,0 +1,36 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+#home, #bio, #portfolio, #contact {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    scroll-margin-top: 60px;
+    color: white;
+}
+
+#home {
+    background: #afbde9;
+    color: black;
+}
+#bio {
+    background: #657ed4;
+}
+#portfolio {
+    background: #314faf;
+}
+#contact {
+    background: #1b2b5f;
+}

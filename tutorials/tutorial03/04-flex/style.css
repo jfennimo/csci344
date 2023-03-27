@@ -1,0 +1,51 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body * {
+    box-sizing: border-box;
+    color: #444;
+    margin-bottom: auto;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    text-align: center;
+}
+
+/* create additional rules below:  */
+
+h2{
+    height: 100px;
+    text-align: center;
+}
+p{
+    height: 100px;
+}
+
+#home{
+    height: 1000px;
+    padding: 20px;
+    background-color: lightblue;
+}
+
+#bio{
+    height: 1000px;
+    padding: 20px;
+    background-color: lightgreen;
+}
+
+#portfolio{
+    height: 1000px;
+    padding: 20px;
+    background-color: lightcoral;
+    text-align: center;
+}
+
+#contact{
+    height: 1000px;
+    padding: 20px;
+    background-color: lightgoldenrodyellow;
+    text-align: center;
+}

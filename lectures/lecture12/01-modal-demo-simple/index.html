@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modal Demo</title>
+        <link rel="stylesheet" href="styles.css">
+        <script lang="text/javascript" src="main.js" defer></script>
+    </head>
+    <body>
+
+        <div class="modal-bg hidden" aria-hidden="true" role="dialog">
+            <section class="modal">
+                <button class="close" onclick="closeModal()" aria-label="Close the modal window">Close</button>
+                <div class="modal-body">
+                    Content inside...
+                </div>
+            </section>
+        </div>
+
+        <button class="open" onclick="openModal()">Open Modal...</button>
+    
+    </body>
+</html>

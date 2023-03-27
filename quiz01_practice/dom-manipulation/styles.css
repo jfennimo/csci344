@@ -1,0 +1,24 @@
+body {
+    margin: 0px;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    background: #F0F0F0;
+    padding: 20px 15vw;
+}
+.controls {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+
+main {
+    padding: 20px 15vw;
+}

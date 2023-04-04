@@ -45,7 +45,7 @@ def home():
 ##############################
 @app.route('/message')
 def exercise1():
-    return 'Hello ' + current_user.get('first_name') + '!'
+    return 'Hello ' + current_user.get('first_name') + ' ' + current_user.get('last_name') + '!'
 
 
 ###########################################

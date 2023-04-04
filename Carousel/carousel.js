@@ -44,7 +44,7 @@ const data = [
 function loadSlides(photoList) {
   photoList.forEach((item, index) => {
     const elem = document.querySelector('.carousel-inner');
-    elem.insertAdjacentHTML("beforeend", `<section id="slide_${index}" class="slide" role="group" onclick="next()" aria-label="Slide ${index+1} of 10">
+    elem.insertAdjacentHTML("beforeend", `<section id="slide_${index}" class="slide" role="group" onclick="next()" aria-label="Slide ${index+1} of 10" aria-hidden = true>
     <img src=${item.image_url} alt="${item.caption}"/>
       <p>${item.caption}</p>
     </section>`);

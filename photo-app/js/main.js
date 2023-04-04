@@ -11,6 +11,26 @@ let token;
 /******************/
 /* Your Functions */
 /******************/
+
+const showUser = async () => {
+    const endpoint = `${rootURL}/api/profile`;
+    const response = await fetch(endpoint, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+
+    document.getElementById("user").insertAdjacentHTML('beforeend',
+    `<div>
+    <img src="${data.image_url}">
+    <h2>${data.username}</h2>
+    </div>`)
+    
+}
+
 const showStories = async () => {
     const endpoint = `${rootURL}/api/stories`;
     const response = await fetch(endpoint, {
@@ -160,8 +180,10 @@ const initPage = async () => {
     console.log(token);
 
     // then use the access token provided to access data on the user's behalf
-    showStories();
-    showPosts();
+    showUser(token);
+    showSuggestions(token);
+    showStories(token);
+    showPosts(token);
 
     // query for the user's profile
     // query for suggestions

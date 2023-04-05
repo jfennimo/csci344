@@ -4,9 +4,28 @@
 /********************/
 /* Global Variables */
 /********************/
-const rootURL = 'https://photo-app-secured.herokuapp.com';
+// import { getAccessToken } from "./utilities";
 let token;
+const rootURL = 'https://photo-app-secured.herokuapp.com';
+const username = 'joel';
+const password = 'joel_password';
 
+async function getAccessToken (rootURL, username, password) {
+    const postData = {
+        "username": username,
+        "password": password
+    };
+    const endpoint = `${rootURL}/api/token/`;
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData)
+    });
+    const data = await response.json();
+    return data.access_token;
+}
 
 /******************/
 /* Your Functions */
@@ -23,11 +42,11 @@ const showUser = async () => {
     const data = await response.json();
     console.log(data);
 
-    document.getElementById("user").insertAdjacentHTML('beforeend',
+    document.querySelector("#user").insertAdjacentHTML('beforeend',
     `<div>
     <img src="${data.image_url}">
     <h2>${data.username}</h2>
-    </div>`)
+    </div>`);
     
 }
 
@@ -70,7 +89,7 @@ const showPosts = async () => {
 
     const arrayOfHTML = data.map(postToHTML);
     const htmlString = arrayOfHTML.join('');
-    document.querySelector('#posts').innerHTML = htmlString;
+    document.querySelector('#card').innerHTML = htmlString;
 }
 
 const getBookmarkButton = post => {
@@ -172,46 +191,6 @@ const showCommentAndButtonIfItMakesSense = post => {
     }
 }
 
-
-const initPage = async () => {
-    // set the token as a global variable 
-    // (so that all of your other functions can access it):
-    token = await getAccessToken(rootURL, 'joel', 'joel_password');
-    console.log(token);
-
-    // then use the access token provided to access data on the user's behalf
-    showUser(token);
-    showSuggestions(token);
-    showStories(token);
-    showPosts(token);
-
-    // query for the user's profile
-    // query for suggestions
-}
-
-
-/********************/
-/* Helper Functions */
-/********************/
-
-// helper function for logging into the website:
-const getAccessToken = async (rootURL, username, password) => {
-    const postData = {
-        "username": username,
-        "password": password
-    };
-    const endpoint = `${rootURL}/api/token/`;
-    const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(postData)
-    });
-    const data = await response.json();
-    return data.access_token;
-}
-
 /**
  * Helper function to replace a DOM element.
  * https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild
@@ -228,6 +207,21 @@ const targetElementAndReplace = (selector, newHTML) => {
     oldEl.parentElement.replaceChild(newEl, oldEl);
 }
 
+const initPage = async () => {
+    // set the token as a global variable 
+    // (so that all of your other functions can access it):
+    token = await getAccessToken(rootURL, username, password);
+    console.log(token);
+
+    // then use the access token provided to access data on the user's behalf
+    showUser(token);
+    // showSuggestions(token);
+    // showStories(token);
+    // showPosts(token);
+
+    // query for the user's profile
+    // query for suggestions
+}
 
 /******************************************/
 /* Invoke initPage to kick everything off */

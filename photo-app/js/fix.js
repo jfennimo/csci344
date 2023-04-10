@@ -48,6 +48,9 @@ const showUser = async () => {
     <img src="${data.image_url}">
     <h2>${data.username}</h2>
     </div>`)
+
+    // `<img src="https://picsum.photos/60/60?q=11" class="pic" />
+    // <h2>gibsonjack</h2>`
 }
 
 const showSuggestions = async (token) => {
@@ -91,16 +94,83 @@ const showStories = async () => {
     })
     const data = await response.json();
     console.log(data);
-    const htmlChunk = data.map(storyToHtml).join('');
-    document.querySelector('.stories').innerHTML = htmlChunk;
+    const htmlString = data.map(storyToHtml).join('');
+    document.querySelector('.stories').innerHTML = htmlString;
 }
 
 const storyToHtml = story => {
-    return `<section class="story">
-        <img src="${story.user.thumb_url}" />
+    return `<div>
+        <img src="${story.user.thumb_url}" class="pic"/>
         <p>${story.user.username}</p>
-    </section>
+        </div>
     `
+}
+
+const showPosts = async () => {
+    // 1. go out to the internet and grab our posts
+    // 2. save the resulting data to a variable
+    // 3. transform the data into an HTML represention
+    // 4. display it:
+    const endpoint = `${rootURL}/api/posts`;
+    const response = await fetch(endpoint, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log('Posts:', data);
+
+    const arrayOfHTML = data.map(postToHtml);
+    const htmlString = arrayOfHTML.join('');
+    document.querySelector('.card').innerHTML = htmlString;
+}
+
+const postToHtml = post => {
+    return `
+    <div class="header">
+    <h3>${post.user.username}</h3>
+    <button class="icon-button"><i class="fas fa-ellipsis-h"></i></button>
+</div>
+<img src="${post.image_url}" alt="sigh" width="300" height="300">
+<div class="info">
+    <div class="buttons">
+        <div>
+            <button class="icon-button"><i class="far fa-heart"></i></button>
+            <button class="icon-button"><i class="far fa-comment"></i></button>
+            <button class="icon-button"><i class="far fa-paper-plane"></i></button>
+        </div>
+        <div>
+            <button class="icon-button"><i class="far fa-bookmark"></i></button>
+        </div>
+    </div>
+    <p class="likes"><strong>${post.likes.length} likes</strong></p>
+    <div class="caption">
+        <p>
+            <strong>${post.user.username}</strong> 
+            ${post.caption}<button class="button">more</button>
+        </p>
+    </div>
+    <div class="comments">
+        <p>
+            <strong>lizzie</strong> 
+            Here is a comment text text text text text text text text.
+        </p>
+        <p>
+            <strong>vanek97</strong> 
+            Here is another comment text text text.
+        </p>
+        <p class="timestamp">${post.display_time}</p>
+    </div>
+</div>
+<div class="add-comment">
+    <div class="input-holder">
+        <i class="far fa-smile"></i>
+        <input type="text" placeholder="Add a comment...">
+    </div>
+    <button class="button">Post</button>
+</div>
+`
 }
 
 const targetElementAndReplace = (selector, newHTML) => {
@@ -121,7 +191,7 @@ const initPage = async () => {
     showUser(token);
     showSuggestions(token);
     showStories(token);
-    // showPosts(token);
+    showPosts(token);
 
     // query for the user's profile
     // query for suggestions

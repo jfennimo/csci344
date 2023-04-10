@@ -52,6 +52,25 @@ header {
     margin-top: 20px;
 }
 
+.top{
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+/* .top {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    height: 77px;
+    width: 958px;
+} */
+
 nav {
     position: sticky;
     height: 70px;
@@ -214,8 +233,8 @@ main {
 }
 
 .card .profile-pic {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -274,7 +293,7 @@ aside header > div {
     width: 25vw;
 }
 
-aside img {
+aside header img {
     width: 60px;
     height: 60px;
     border-radius: 33px;

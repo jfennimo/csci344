@@ -126,7 +126,57 @@ const showPosts = async () => {
     document.querySelector('.card').innerHTML = htmlString;
 }
 
+const getLikeButton = post => {
+    if(post.current_user_like_id) {
+        return `
+        <button class="icon-button" onclick="unlikePost(${post.current_user_like_id}, ${post.id})">
+            <i class="fas fa-heart"></i>
+        </button>
+        `;
+    } else {
+        return `
+        <button class="icon-button" onclick="likePost(${post.id})">
+            <i class="far fa-heart"></i>
+        </button>
+        `;
+    }
+}
+
+const getBookmarkButton = post => {
+    if (post.current_user_bookmark_id) {
+        return `
+        <button class="icon-button" onclick="unbookmarkPost(${post.current_user_bookmark_id}, ${post.id})">
+            <i class="fa-solid fa-bookmark"></i>
+        </button>
+        `;
+    } else {
+        return `
+        <button class="icon-button" onclick="createBookmark(${post.id})">
+            <i class="fa-regular fa-bookmark"></i>
+        </button>
+        `;
+    }
+}
+
 const postToHtml = post => {
+
+    const numComments = post.comments.length;
+    const newestComment = post.comments[numComments - 1];
+    
+    if(numComments > 1) {
+        showComments = `<section id="view-all-comments" onclick="openModal()"> <button class="button">View all ${numComments} comments</button></section>
+        <p>
+            <strong>${newestComment.user.username}</strong> 
+            ${newestComment.text}
+        </p>`;
+    } else {
+        showComments = `<p>
+            <strong>${newestComment.user.username}</strong> 
+            ${newestComment.text}
+        </p>
+        `
+    }
+
     return `
     <div class="header">
     <h3>${post.user.username}</h3>
@@ -136,30 +186,23 @@ const postToHtml = post => {
 <div class="info">
     <div class="buttons">
         <div>
-            <button class="icon-button"><i class="far fa-heart"></i></button>
+            ${getLikeButton(post)}
             <button class="icon-button"><i class="far fa-comment"></i></button>
             <button class="icon-button"><i class="far fa-paper-plane"></i></button>
         </div>
         <div>
-            <button class="icon-button"><i class="far fa-bookmark"></i></button>
+            ${getBookmarkButton(post)}
         </div>
     </div>
     <p class="likes"><strong>${post.likes.length} likes</strong></p>
     <div class="caption">
         <p>
             <strong>${post.user.username}</strong> 
-            ${post.caption}<button class="button">more</button>
+            ${post.caption}
         </p>
     </div>
     <div class="comments">
-        <p>
-            <strong>lizzie</strong> 
-            Here is a comment text text text text text text text text.
-        </p>
-        <p>
-            <strong>vanek97</strong> 
-            Here is another comment text text text.
-        </p>
+        ${showComments}
         <p class="timestamp">${post.display_time}</p>
     </div>
 </div>
@@ -172,6 +215,72 @@ const postToHtml = post => {
 </div>
 `
 }
+
+const openModal = () => {
+    const modalElement = document.querySelector('.modal-bg');
+
+    console.log('pls work');
+    // shows the modal:
+    modalElement.classList.remove('hidden');
+
+    // accessibility:
+    modalElement.setAttribute('aria-hidden', 'false');
+
+    // puts the focus on the "close" button:
+    document.querySelector('.close').focus();
+
+    modalInfo(post_id);
+}
+
+const closeModal = () => {
+    const modalElement = document.querySelector('.modal-bg');
+
+    // hides the modal:
+    modalElement.classList.add('hidden');
+
+    // accessibility:
+    modalElement.setAttribute('aria-hidden', 'false');
+
+    // puts the focus on the "open" button:
+    document.querySelector('.open').focus();
+}
+
+const modalInfo = async (post) => {
+    const endpoint = `${rootURL}/api/posts/${post}`;
+    const response = await fetch(endpoint, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+
+    const arrayOfHTML = data.map(modalToHtml);
+    const htmlString = arrayOfHTML.join('');
+    document.querySelector('.modal-body').innerHTML = htmlString;
+}
+
+// const modalToHtml = post => {
+//     return `<div class="image" style="background-image: url('https://picsum.photos/600/430?id=139');"></div>
+//     <section class="the-comments">
+//         <div class="row">
+//             <p>Some comment text</p>
+//         </div>
+//     </section>`
+// }
+
+
+// function ensures that if the tabbing gets to the end of the 
+// modal, it will loop back up to the beginning of the modal:
+document.addEventListener('focus', function(event) {
+    console.log('focus');
+    if (modalElement.getAttribute('aria-hidden') === 'false' && !modalElement.contains(event.target)) {
+        console.log('back to top!');
+        event.stopPropagation();
+        document.querySelector('.close').focus();
+    }
+}, true);
+
 
 const targetElementAndReplace = (selector, newHTML) => {
     const div = document.createElement('div');
@@ -192,9 +301,7 @@ const initPage = async () => {
     showSuggestions(token);
     showStories(token);
     showPosts(token);
-
-    // query for the user's profile
-    // query for suggestions
+    modalInfo(token);
 }
 
 /******************************************/

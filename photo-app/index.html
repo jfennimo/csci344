@@ -5,132 +5,108 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="js/fix.js" defer></script>
+    <script src="js/main.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo App</title>
 </head>
 
+<body>
+    <nav>
+        <h1>Photo App</h1>
+        <ul>
+            <!-- <li><span>gibsonjack</span></li>
+            <li><a href="#">Sign out</a></li> -->
+        </ul>
+    </nav>
 
-<body style="overflow-y: auto;">
-    <div id="page">
-        <div>
-            <!-- Navigation bar -->
-            <nav class="nav-bar">
-                <h1>Photo App</h1>
-                <!-- <ul>
-                    <li>
-                        <span>jfennimo</span>
-                    </li>
-                    <li>
-                        <a href="https://photo-app-secured.herokuapp.com/logout">Sign out</a>
-                    </li>
-                </ul> -->
-            </nav>
-            <aside>
-                <!-- Profile header -->
-                <header class="user">
-                    <!-- <div>
-                        <img class="pic" src="./files/Birch_Mudkip_30x30.jpg" alt="Mudkip">
-                        <h2>jfennimo</h2>
-                    </div> -->
-                </header>
+    <aside>
+        <header class="user">
+            <!-- <img src="https://picsum.photos/60/60?q=11" class="pic" />
+            <h2>gibsonjack</h2> -->
+        </header>
+        <div class="suggestions">
+            <p class="suggestion-text">Suggestions for you</p>
+            <!-- <section>
+                <img src="https://picsum.photos/30/30?q=11" class="pic" />
+                <div>
+                    <p class="username">amandahudson</p>
+                    <p>suggested for you</p>
+                </div>
+                <button class="button">follow</button>
+            </section> -->
+        </div>
+    </aside>
 
-                <!-- Suggestions -->
-                <div class="suggestions">
-                    <p class="suggestion-text">Suggestions for you</p>
+    <main class="content">
+        <!-- Stories -->
+        <header class="stories">
+            <!-- <div>
+                <img src="https://picsum.photos/50/50?q=10" class="pic" />
+                <p>gouldjennifer</p>
+            </div> -->
+        </header>
+
+        <!-- Posts -->
+        <section class="card">
+            <!-- <div class="header">
+                <h3>gibsonjack</h3>
+                <button class="icon-button"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+            <img src="https://picsum.photos/300/200?q=1" alt="placeholder image" width="300" height="300">
+            <div class="info">
+                <div class="buttons">
                     <div>
-                        <!-- <section id="suggestion-1">
-                            <img src="./files/cool_dude_30x30.png" class="pic" alt="Fred Jones">
-                            <div>
-                                <p>cool_dude</p>
-                                <p>suggested for you</p>
-                            </div>
-                            <div>
-                                <button role="switch" class="link following" aria-checked="false"
-                                    aria-label="Follow cool_dude">follow</button>
-                            </div>
-                        </section> -->
+                        <button class="icon-button"><i class="far fa-heart"></i></button>
+                        <button class="icon-button"><i class="far fa-comment"></i></button>
+                        <button class="icon-button"><i class="far fa-paper-plane"></i></button>
+                    </div>
+                    <div>
+                        <button class="icon-button"><i class="far fa-bookmark"></i></button>
                     </div>
                 </div>
-            </aside>
-
-            <main class="main">
-                <!-- Stories panel -->
-                <header class="stories">
-                    <!-- <div>
-                        <img src="./files/cat_lover_30x30.jpg" class="pic" alt="funny cat">
-                        <p>cat_lover</p>
-                    </div> -->
-                </header>
-
-                <!-- Card/Timeline -->
-                <div id="timeline">
-                        <!-- <div class="header">
-                            <div class="profile-pic"><img src="https://i.pinimg.com/736x/ba/92/7f/ba927ff34cd961ce2c184d47e8ead9f6.jpg" alt="funny cat"></div>
-                            <h3>cat_lover</h3>
-                            <i class="fa fa-dots"></i>
-                        </div>
-                        <img src="./files/toilet_cat.jpg" alt="Picture of cat in toilet" width="300" height="300"
-                            title="">
-                        <div class="info">
-                            <div class="buttons">
-                                <div>
-                                    <button role="switch" class="like" aria-label="Like Button" aria-checked="false">
-                                        <i class="far fa-heart">
-                                        </i>
-                                    </button>
-                                    <i class="far fa-comment">
-
-                                    </i>
-                                    <i class="far fa-paper-plane">
-
-                                    </i>
-                                </div>
-                                <div>
-                                    <button role="switch" class="bookmark" aria-label="Bookmark Button"
-                                        aria-checked="true">
-                                        <i class="fas fa-bookmark">
-
-                                        </i>
-                                    </button>
-                                </div>
-                            </div>
-                            <p class="likes">
-                                <strong>3 likes</strong>
-                            </p>
-                            <div class="caption">
-                                <p>
-                                    <strong>cat_lover</strong>
-                                    toilet cat lol!!!!
-                                </p>
-                                <p class="timestamp">11 hours ago</p>
-                            </div>
-                            <button class="link">
-                                View all 4 comments
-                            </button>
-                            <div class="comments">
-                                <div>
-                                    <p>
-                                        <strong>feline_friend</strong>
-                                        funniest thing i've ever seen
-                                    </p>
-                                    <p class="timestamp">
-                                        2 hours ago</p>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="add-comment">
-                            <div class="input-holder">
-                                <input class="comment-textbox" aria-label="Add a comment" placeholder="Add a comment..."
-                                    value="">
-                            </div>
-                            <button class="link">Post</button>
-                        </form> -->
+                <p class="likes"><strong>30 likes</strong></p>
+                <div class="caption">
+                    <p>
+                        <strong>gibsonjack</strong> 
+                        Here is a caption about the photo. 
+                        Text text text text text text text text text
+                        text text text text text text text text... <button class="button">more</button>
+                    </p>
                 </div>
-        </div>
+                <div class="comments">
+                    <p>
+                        <strong>lizzie</strong> 
+                        Here is a comment text text text text text text text text.
+                    </p>
+                    <p>
+                        <strong>vanek97</strong> 
+                        Here is another comment text text text.
+                    </p>
+                    <p class="timestamp">1 day ago</p>
+                </div>
+            </div>
+            <div class="add-comment">
+                <div class="input-holder">
+                    <i class="far fa-smile"></i>
+                    <input type="text" placeholder="Add a comment...">
+                </div>
+                <button class="button">Post</button>
+            </div> -->
         </section>
-    </div>
+        <div class="modal-bg hidden" aria-hidden="true" role="dialog">
+            <section class="modal">
+                <button class="close" onclick="closeModal()" aria-label="Close the modal window"><i class="fas fa-times"></i></button>
+                <div class="modal-body">
+                    <!-- <div class="image" style="background-image: url('https://picsum.photos/600/430?id=139');"></div>
+                    <section class="the-comments">
+                        <div class="row">
+                            <p>Some comment text</p>
+                        </div>
+                    </section> -->
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
-
 </html>

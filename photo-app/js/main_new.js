@@ -160,34 +160,28 @@ const getBookmarkButton = post => {
 const postToHtml = post => {
 
     const numComments = post.comments.length;
-    console.log(numComments)
-    if(numComments == 0) {
-        showComments = '';
+    const newestComment = post.comments[numComments - 1];
+    
+    if(numComments > 1) {
+        showComments = `<section id="view-all-comments" onclick="openModal(${post.id})"> <button class="button">View all ${numComments} comments</button></section>
+        <p>
+            <strong>${post.user.username}</strong> 
+            ${post.text}
+        </p>`;
     } else {
-
-        const newestComment = post.comments[numComments - 1];
-        if(numComments > 1) {
-            showComments = `<section id="view-all-comments" onclick="openModal(${post.id})"> <button class="button">View all ${numComments} comments</button></section>
-            <p>
-                <strong>${newestComment.user.username}</strong> 
-                ${newestComment.text}
-            </p>`;
-        } else {
-            showComments = `<p>
-                <strong>${newestComment.user.username}</strong> 
-                ${newestComment.text}
-            </p>
-            `
-        }
+        showComments = `<p>
+            <strong>${post.user.username}</strong> 
+            ${post.text}
+        </p>
+        `
     }
 
-   
-
     return `
+<section id="post_${post.id}" class="post">
     <div class="header">
-    <h3>${post.user.username}</h3>
-    <button class="icon-button"><i class="fas fa-ellipsis-h"></i></button>
-</div>
+        <h3>${post.user.username}</h3>
+            <button class="icon-button"><i class="fas fa-ellipsis-h"></i></button>
+    </div>
 <img src="${post.image_url}" alt="sigh" width="300" height="300">
 <div class="info">
     <div class="buttons">
@@ -219,6 +213,7 @@ const postToHtml = post => {
     </div>
     <button class="button">Post</button>
 </div>
+</section>
 `
 }
 
@@ -278,7 +273,7 @@ const modalInfo = async (id) => {
         </div>
     </section>`;
 
-    document.querySelector('.row').innerHTML = '';
+    document.querySelector(".row").innerHTML = '';
     data.comments.forEach(modalComments);
 }
 
@@ -309,6 +304,153 @@ document.addEventListener('focus', function(event) {
     }
 }, true);
 
+
+/****************/
+/*HW05 Functions*/
+/****************/
+
+const requeryRedraw = async (postID) => {
+    const endpoint = `${rootURL}/api/posts/${postID}`;
+    const response = await fetch(endpoint, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    const htmlString = postToHtml(data);
+    targetElementAndReplace(`#post_${postID}`, htmlString);
+}
+
+const followRedraw = async (followId) => {
+    const endpoint = `${rootURL}/api/following/${followId}`;
+    const response = await fetch(endpoint, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    const htmlString = postToHtml(data);
+    targetElementAndReplace(`#suggestion_${userID}`, htmlString);
+}
+
+const createBookmark = async (postID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/bookmarks/`;
+    const postData = {
+        "post_id": postID
+    };
+
+    // Create the bookmark:
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(postData)
+    })
+    const data = await response.json();
+    console.log(data);
+    requeryRedraw(postID);
+}
+
+const unbookmarkPost = async (bookmarkId, postID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/bookmarks/${bookmarkId}`;
+
+    // Delete the bookmark:
+    const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    requeryRedraw(postID);
+}
+
+const likePost = async (postID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/posts/likes`;
+    const postData = {
+        "post_id": postID
+    };
+
+    // Create the like:
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(postData)
+    })
+    const data = await response.json();
+    console.log(data);
+    requeryRedraw(postID);
+}
+
+const unlikePost = async (likeId, postID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/posts/likes/${likeId}`;
+
+    // Delete the like:
+    const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    requeryRedraw(postID);
+}
+
+// CONTINUE HERE
+const followAccount = async (userID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/following/`;
+    const postData = {
+        "user_id": userID
+    };
+
+    // Create the follow:
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(postData)
+    })
+    const data = await response.json();
+    console.log(data);
+    followRedraw(userID);
+}
+
+const unfollowAccount = async (followId, userID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/following/${followId}`;
+
+    // Delete the follow:
+    const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    followRedraw(userID);
+}
 
 const targetElementAndReplace = (selector, newHTML) => {
     const div = document.createElement('div');

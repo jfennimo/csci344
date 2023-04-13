@@ -45,7 +45,7 @@ a:hover {
     color: rgb(44, 105, 155);
 }
 
-button.link {
+button.link_following {
     color: rgb(44, 105, 155);
     background-color: transparent;
     border-width: 0px;
@@ -55,11 +55,11 @@ button.link:hover {
     color: #777;
 }
 
-button.link.following {
+button.link_following {
     padding: 5px 10px !important;
 }
 
-button.link.following.active {
+button.link_following.active {
     background-color: white;
     padding: 5px 10px !important;
     border: solid 1px #CCC;

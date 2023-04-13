@@ -68,6 +68,7 @@ const showSuggestions = async (token) => {
     document.querySelector('.suggestions').innerHTML = htmlChunk;
 }
 
+// I originally had a call to my getSuggestions method here but it's busted
 const suggestionToHtml = (suggestion) => {
     return `
     <section id="suggestion">
@@ -77,7 +78,7 @@ const suggestionToHtml = (suggestion) => {
             <p>suggested for you</p>
             </div>
             <div>
-                <button role="switch" class="link following" aria-checked="false"
+                <button role="switch" class="link_following" aria-checked="false"
                     aria-label="Follow ${suggestion.username}">follow</button>
             </div>
     </section>`
@@ -128,13 +129,13 @@ const showPosts = async () => {
 const getLikeButton = post => {
     if(post.current_user_like_id) {
         return `
-        <button class="icon-button" onclick="unlikePost(${post.current_user_like_id}, ${post.id})">
+        <button class="icon-button" aria-label="Like Button" onclick="unlikePost(${post.current_user_like_id}, ${post.id})" aria-checked="true">
             <i class="fas fa-heart"></i>
         </button>
         `;
     } else {
         return `
-        <button class="icon-button" onclick="likePost(${post.id})">
+        <button class="icon-button" aria-label="Like Button" onclick="likePost(${post.id})" aria-checked="false">
             <i class="far fa-heart"></i>
         </button>
         `;
@@ -144,23 +145,40 @@ const getLikeButton = post => {
 const getBookmarkButton = post => {
     if (post.current_user_bookmark_id) {
         return `
-        <button class="icon-button" onclick="unbookmarkPost(${post.current_user_bookmark_id}, ${post.id})">
+        <button class="icon-button" aria-label="Bookmark Button" onclick="unbookmarkPost(${post.current_user_bookmark_id}, ${post.id})" aria-checked="true">
             <i class="fa-solid fa-bookmark"></i>
         </button>
         `;
     } else {
         return `
-        <button class="icon-button" onclick="createBookmark(${post.id})">
+        <button class="icon-button" aria-label="Bookmark Button" onclick="createBookmark(${post.id})" aria-checked="false"> 
             <i class="fa-regular fa-bookmark"></i>
         </button>
         `;
     }
 }
 
-const postToHtml = post => {
+// Cannot figure this out but it seemed to curse my webpage and create tons more stories and remove some suggestions ;_;
 
+// const getSuggestions = suggestion => {
+
+//     const following = document.querySelector(`#link_following.aria-label`).innerHTML;
+
+//     if(following === "Follow") {
+//         return `
+//         <button role="switch" class="link_following" onclick="followAccount(${suggestion.id})" aria-checked="false"
+//         aria-label="Follow ${suggestion.username}">follow</button>
+//     `
+//     } else {
+//         return `
+//         <button role="switch" class="link_following" onclick="unFollowAccount(${suggestion.id})" aria-checked="true"
+//         aria-label="Unfollow ${suggestion.username}">unfollow</button>
+//     `
+//     }     
+// }
+
+const postToHtml = post => {
     const numComments = post.comments.length;
-    console.log(numComments)
     if(numComments == 0) {
         showComments = '';
     } else {
@@ -181,13 +199,12 @@ const postToHtml = post => {
         }
     }
 
-   
-
     return `
+<section id="post_${post.id}" class="post">
     <div class="header">
-    <h3>${post.user.username}</h3>
-    <button class="icon-button"><i class="fas fa-ellipsis-h"></i></button>
-</div>
+        <h3>${post.user.username}</h3>
+            <button class="icon-button"><i class="fas fa-ellipsis-h"></i></button>
+    </div>
 <img src="${post.image_url}" alt="sigh" width="300" height="300">
 <div class="info">
     <div class="buttons">
@@ -215,10 +232,11 @@ const postToHtml = post => {
 <div class="add-comment">
     <div class="input-holder">
         <i class="far fa-smile"></i>
-        <input type="text" placeholder="Add a comment...">
+        <input type="text" id="addComment${post.id}" placeholder="Add a comment...">
     </div>
-    <button class="button">Post</button>
+    <button class="button" onclick="addComment(${post.id})">Post</button>
 </div>
+</section>
 `
 }
 
@@ -278,7 +296,7 @@ const modalInfo = async (id) => {
         </div>
     </section>`;
 
-    document.querySelector('.row').innerHTML = '';
+    document.querySelector(".row").innerHTML = '';
     data.comments.forEach(modalComments);
 }
 
@@ -308,6 +326,175 @@ document.addEventListener('focus', function(event) {
         document.querySelector('.close').focus();
     }
 }, true);
+
+
+/****************/
+/*HW05 Functions*/
+/****************/
+
+const requeryRedraw = async (postID) => {
+    const endpoint = `${rootURL}/api/posts/${postID}`;
+    const response = await fetch(endpoint, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    const htmlString = postToHtml(data);
+    targetElementAndReplace(`#post_${postID}`, htmlString);
+}
+
+const createBookmark = async (postID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/bookmarks/`;
+    const postData = {
+        "post_id": postID
+    };
+
+    // Create the bookmark:
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(postData)
+    })
+    const data = await response.json();
+    console.log(data);
+    requeryRedraw(postID);
+}
+
+const unbookmarkPost = async (bookmarkId, postID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/bookmarks/${bookmarkId}`;
+
+    // Delete the bookmark:
+    const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    requeryRedraw(postID);
+}
+
+const likePost = async (postID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/posts/likes`;
+    const postData = {
+        "post_id": postID
+    };
+
+    // Create the like:
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(postData)
+    })
+    const data = await response.json();
+    console.log(data);
+    requeryRedraw(postID);
+}
+
+const unlikePost = async (likeId, postID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/posts/likes/${likeId}`;
+
+    // Delete the like:
+    const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    requeryRedraw(postID);
+}
+
+const addComment = async (postID) => {
+    let commenting = document.querySelector(`#addComment${postID}`);
+    const endpoint = `${rootURL}/api/comments`;
+    const postData = {
+        "post_id": postID,
+        "text": commenting.value
+    };
+
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(postData)
+    })
+    const data = await response.json();
+    console.log(data);
+    requeryRedraw(postID);
+}
+
+// CONTINUE HERE
+// const followAccount = async (suggestionID) => {
+//     // define the endpoint:
+//     const endpoint = `${rootURL}/api/following/`;
+//     const postData = {
+//         "user_id": suggestionID
+//     };
+
+//     // Create the follow:
+//     const response = await fetch(endpoint, {
+//         method: "POST",
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': 'Bearer ' + token
+//         },
+//         body: JSON.stringify(postData)
+//     })
+//     const data = await response.json();
+//     console.log(data);
+//     followRedraw(suggestionID);
+// }
+
+// const unfollowAccount = async (followId, suggestionID) => {
+//     // define the endpoint:
+//     const endpoint = `${rootURL}/api/following/${followId}`;
+
+//     // Delete the follow:
+//     const response = await fetch(endpoint, {
+//         method: "DELETE",
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': 'Bearer ' + token
+//         }
+//     })
+//     const data = await response.json();
+//     console.log(data);
+//     followRedraw(suggestionID);
+// }
+
+// const followRedraw = async (suggestionID) => {
+//     const endpoint = `${rootURL}/api/following`;
+//     const response = await fetch(endpoint, {
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': 'Bearer ' + token
+//         }
+//     })
+//     const data = await response.json();
+//     console.log(data);
+//     const htmlString = suggestionToHtml(data);
+//     targetElementAndReplace(`#suggestion_${suggestionID}`, htmlString);
+// }
 
 
 const targetElementAndReplace = (selector, newHTML) => {

@@ -169,7 +169,7 @@ if __name__ == '__main__':
         
         # GET (List) Tests:
         TestBookmarkListEndpoint('test_bookmarks_get_check_if_query_correct'),
-        # TestBookmarkListEndpoint('test_bookmarks_get_check_if_data_structure_correct'),
+        TestBookmarkListEndpoint('test_bookmarks_get_check_if_data_structure_correct'),
         
         # # POST Tests:
         # TestBookmarkListEndpoint('test_bookmark_post_valid_request_201'),

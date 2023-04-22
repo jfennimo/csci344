@@ -85,7 +85,7 @@ async def respond_to_message(websocket, message):
         return await websocket.send(json.dumps(data))
     
     response_message = None
-    await websocket.send(json.dumps(data))
+    # await websocket.send(json.dumps(data))
     if data.get('type') == 'login':
             logged_in_users[websocket] = data.get('username')
 

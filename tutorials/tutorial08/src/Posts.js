@@ -1,3 +1,5 @@
+// The job of Posts is to display posts.
+
 import React from 'react';
 import Post from './Post';
 
@@ -14,7 +16,6 @@ export default function Posts({token}) {
             });
             const data = await response.json();
             setPosts(data);
-            console.log(data);
         }
         fetchPosts();
     }, [token]);
@@ -22,24 +23,19 @@ export default function Posts({token}) {
     if (posts.length === 0) {
         return <div id="posts"></div>
     }
-
-   return (
+   
+    return (
         <div id="posts">
             {
-                posts.map(post => <Post key={post.id} post={post} token={token}/>)
+                posts.map(post => {
+                    return (
+                        <Post key={post.id} 
+                            post={post} 
+                            token={token} />
+                    )
+                })
             }
         </div>
-   )
+    );  
 
-    // return (
-    //     <div id="posts">
-    //         {
-    //         posts.map(post => {
-    //             return (
-    //                 <Post post={post} />
-    //             )
-    //         })
-    //     }
-    //     </div>
-    // );     
 }

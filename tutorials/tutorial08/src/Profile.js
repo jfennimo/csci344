@@ -12,12 +12,13 @@ export default function Profile({profile}) {
 
     // return some JSX
     if (!profile) {
-        return;
+        return '';
     }
+    
     return (
-        <header>
+        <div>
             <img src={profile.thumb_url} />
-            <h3>{profile.username}</h3>
-        </header>
+            <h2>{profile.username}</h2>
+        </div>
     )
 }

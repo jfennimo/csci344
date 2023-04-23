@@ -2,8 +2,6 @@ import React from 'react';
 
 export default function NavLinks({profile}) { 
 
-
-
     if (!profile) {
         return '';
     }
@@ -11,7 +9,7 @@ export default function NavLinks({profile}) {
         <ul>   
             <li>API Docs</li>
             <li><span>{profile.username}</span></li>
-            <li>Sign out</li>
+            <li><a href="#">Sign out</a></li>
         </ul> 
     );
     

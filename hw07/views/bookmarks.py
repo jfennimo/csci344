@@ -1,7 +1,8 @@
 from flask import Response, request
 from flask_restful import Resource
-from models import Bookmark, db
+from models import db, Bookmark, Post
 import json
+from views import get_authorized_user_ids
 
 class BookmarksListEndpoint(Resource):
 
@@ -17,7 +18,38 @@ class BookmarksListEndpoint(Resource):
         # create a new "bookmark" based on the data posted in the body 
         body = request.get_json()
         print(body)
-        return Response(json.dumps({}), mimetype="application/json", status=201)
+
+        try:
+            post_id = int(body.get('post_id'))
+        except:
+            return Response(json.dumps({'error': 'post_id format incorrect'}), status=400)        
+
+        # if post == None:
+        #     return Response(json.dumps({ "error": "post_id not valid" }), mimetype="application/json", status=400)
+
+        # if post not in authorized_ids:
+        #     return Response(json.dumps({ "error": "post_id not valid or is unauthorized" }), mimetype="application/json", status=400)
+
+        post = Post.query.get(post_id)
+        authorized_ids = get_authorized_user_ids(current_user=self.current_user)
+        
+        if post == None:
+            return Response(json.dumps({ "error": "post_id not valid" }), mimetype="application/json", status=404)
+
+        if post.user_id not in authorized_ids:
+            return Response(json.dumps({ "error": "post_id not valid or is unauthorized" }), mimetype="application/json", status=404)
+
+        new_bookmark = Bookmark(
+            user_id=self.current_user.id,
+            post_id=body.get('post_id'),
+        )
+        try:
+            db.session.add(new_bookmark)
+            db.session.commit()
+        except:
+            return Response(json.dumps({ "error": "duplicate post_id" }), mimetype="application/json", status=400)
+
+        return Response(json.dumps(new_bookmark.to_dict()), mimetype="application/json", status=201)
 
 class BookmarkDetailEndpoint(Resource):
 
@@ -27,7 +59,21 @@ class BookmarkDetailEndpoint(Resource):
     def delete(self, id):
         # delete "bookmark" record where "id"=id
         print(id)
-        return Response(json.dumps({}), mimetype="application/json", status=200)
+
+        try:
+            id = int(id)
+        except:
+            return Response(json.dumps({'error': 'bookmark_id format incorrect'}), status=404)
+
+        bookmark = Bookmark.query.get(id)
+
+        if bookmark == None or bookmark.user_id != self.current_user.id:
+            return Response(json.dumps({ "error": "bookmark not valid or is unauthorized" }), mimetype="application/json", status=404)
+
+        Bookmark.query.filter_by(id=id).delete()
+        db.session.commit()
+
+        return Response(json.dumps(None), mimetype="application/json", status=200)
 
 
 

@@ -71,15 +71,14 @@ const showSuggestions = async (token) => {
 // I originally had a call to my getSuggestions method here but it's busted
 const suggestionToHtml = (suggestion) => {
     return `
-    <section id="suggestion">
+    <section id="suggestion_${suggestion.id}" class="suggestion">
     <img src="${suggestion.image_url}" class="pic" alt="${suggestion.username}">
         <div>
             <p>${suggestion.username}</p>
             <p>suggested for you</p>
             </div>
             <div>
-                <button role="switch" class="link_following" aria-checked="false"
-                    aria-label="Follow ${suggestion.username}">follow</button>
+                ${getSuggestions(suggestion)}
             </div>
     </section>`
 }
@@ -160,22 +159,20 @@ const getBookmarkButton = post => {
 
 // Cannot figure this out but it seemed to curse my webpage and create tons more stories and remove some suggestions ;_;
 
-// const getSuggestions = suggestion => {
+const getSuggestions = suggestion => {
 
-//     const following = document.querySelector(`#link_following.aria-label`).innerHTML;
-
-//     if(following === "Follow") {
-//         return `
-//         <button role="switch" class="link_following" onclick="followAccount(${suggestion.id})" aria-checked="false"
-//         aria-label="Follow ${suggestion.username}">follow</button>
-//     `
-//     } else {
-//         return `
-//         <button role="switch" class="link_following" onclick="unFollowAccount(${suggestion.id})" aria-checked="true"
-//         aria-label="Unfollow ${suggestion.username}">unfollow</button>
-//     `
-//     }     
-// }
+    if (!suggestion.id) {
+        return `
+        <button role="switch" class="link_following" onclick="unFollowAccount(${suggestion.id})" aria-checked="true"
+        aria-label="Unfollow ${suggestion.username}">unfollow</button>
+    `
+    } else {
+        return `
+        <button role="switch" class="link_following" onclick="followAccount(${suggestion.id})" aria-checked="false"
+        aria-label="Follow ${suggestion.username}">follow</button>
+    `
+    }    
+}
 
 const postToHtml = post => {
     const numComments = post.comments.length;
@@ -346,6 +343,22 @@ const requeryRedraw = async (postID) => {
     targetElementAndReplace(`#post_${postID}`, htmlString);
 }
 
+
+const followRedraw = async (suggestionID) => {
+    const endpoint = `${rootURL}/api/following/${suggestionID}`;
+    const response = await fetch(endpoint, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    const htmlString = suggestionToHtml(data);
+    targetElementAndReplace(`#suggestion_${suggestionID}`, htmlString);
+}
+
+
 const createBookmark = async (postID) => {
     // define the endpoint:
     const endpoint = `${rootURL}/api/bookmarks/`;
@@ -444,57 +457,44 @@ const addComment = async (postID) => {
 }
 
 // CONTINUE HERE
-// const followAccount = async (suggestionID) => {
-//     // define the endpoint:
-//     const endpoint = `${rootURL}/api/following/`;
-//     const postData = {
-//         "user_id": suggestionID
-//     };
+const followAccount = async (suggestionID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/following/`;
+    const postData = {
+        "user_id": suggestionID
+    };
 
-//     // Create the follow:
-//     const response = await fetch(endpoint, {
-//         method: "POST",
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': 'Bearer ' + token
-//         },
-//         body: JSON.stringify(postData)
-//     })
-//     const data = await response.json();
-//     console.log(data);
-//     followRedraw(suggestionID);
-// }
+    // Create the follow:
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(postData)
+    })
+    const data = await response.json();
+    console.log(data);
+    followRedraw(suggestionID);
+}
 
-// const unfollowAccount = async (followId, suggestionID) => {
-//     // define the endpoint:
-//     const endpoint = `${rootURL}/api/following/${followId}`;
+const unfollowAccount = async (user_id, suggestionID) => {
+    // define the endpoint:
+    const endpoint = `${rootURL}/api/following/${user_id}`;
 
-//     // Delete the follow:
-//     const response = await fetch(endpoint, {
-//         method: "DELETE",
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': 'Bearer ' + token
-//         }
-//     })
-//     const data = await response.json();
-//     console.log(data);
-//     followRedraw(suggestionID);
-// }
+    // Delete the follow:
+    const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    followRedraw(suggestionID);
+}
 
-// const followRedraw = async (suggestionID) => {
-//     const endpoint = `${rootURL}/api/following`;
-//     const response = await fetch(endpoint, {
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': 'Bearer ' + token
-//         }
-//     })
-//     const data = await response.json();
-//     console.log(data);
-//     const htmlString = suggestionToHtml(data);
-//     targetElementAndReplace(`#suggestion_${suggestionID}`, htmlString);
-// }
 
 
 const targetElementAndReplace = (selector, newHTML) => {

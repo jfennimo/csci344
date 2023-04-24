@@ -72,12 +72,12 @@ export default function Post({post, token}) {
     <div class="info">
         <div class="buttons">
             <div>
-                <LikeButton actualLike={actualLike} post={post} token={token} requeryPost={requeryPost} />
+                <LikeButton actualLike={actualLike} post={actualPost} token={token} requeryPost={requeryPost} />
                 <button class="icon-button"><i class="far fa-comment"></i></button>
                 <button class="icon-button"><i class="far fa-paper-plane"></i></button>
             </div>
             <div>
-                <BookmarkButton actualBookmark={actualBookmark} post={post} token={token} requeryPost={requeryPost} />
+                <BookmarkButton actualBookmark={actualBookmark} post={actualPost} token={token} requeryPost={requeryPost} />
             </div>
     </div>
     <p class="likes"><strong>{likeAmount} likes</strong></p>
@@ -92,7 +92,7 @@ export default function Post({post, token}) {
             <p class="timestamp">{post.display_time}</p>
         </div>
     </div>
-        <AddComment token={token} post={post} requeryPost={requeryPost}/>
+        <AddComment token={token} post={actualPost} requeryPost={requeryPost}/>
     </section>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import {getHeaders} from './utils';
 
 
-export default function LikeButton({post, token, requeryPost}) {
+export default function LikeButton({actualLike, post, token, requeryPost}) {
     // some logic at the top:
     const likeId = post.current_user_like_id;
     const postId = post.id;
@@ -35,7 +35,13 @@ export default function LikeButton({post, token, requeryPost}) {
 
     // return some JSX:
     return (
-        <button onClick={likeUnlike}>{likeId ? 'unlike' : 'like'}</button>
-    )
-
+    actualLike ? 
+    <button class="icon-button" aria-label="Like Button" onClick={likeUnlike} aria-checked="true">
+        <i class="fas fa-heart"></i>
+    </button>
+    :
+    <button class="icon-button" aria-label="Like Button" onClick={likeUnlike} aria-checked="false">
+        <i class="far fa-heart"></i>
+    </button>
+    );
 }

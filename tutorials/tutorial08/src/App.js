@@ -40,7 +40,7 @@ export default function App ({token}) {
                     <Profile profile={profile} />
                 </header>
                 <div class="suggestions">
-                    <Suggestions />
+                    <Suggestions token={token} />
                 </div>
             </aside>
 

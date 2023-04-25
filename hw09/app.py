@@ -11,6 +11,7 @@ from views import initialize_routes, get_authorized_user_ids
 import flask_jwt_extended           
 from lib.flask_multistatic import MultiStaticFlask as Flask
 from flask import send_from_directory
+import decorators
 
 
 app = Flask(__name__)
@@ -54,19 +55,18 @@ def user_lookup_callback(_jwt_header, jwt_data):
 initialize_routes(api)
 
 @app.route('/')
-# @decorators.jwt_or_login
+@decorators.jwt_or_login
 def home():
     # https://medium.com/swlh/how-to-deploy-a-react-python-flask-project-on-heroku-edb99309311
     return send_from_directory(app.root_path + '/react-client/build', 'index.html')
 
-
 @app.route('/api')
-@flask_jwt_extended.jwt_required()
+@decorators.jwt_or_login
 def api_docs():
-    navigator = ApiNavigator(flask_jwt_extended.current_user)
+    navigator = ApiNavigator(app.current_user)
     return render_template(
         'api/api_docs.html', 
-        user=flask_jwt_extended.current_user,
+        user=app.current_user,
         endpoints=navigator.get_endpoints(),
         url_root=request.url_root[0:-1] # trim trailing slash
     )

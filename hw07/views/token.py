@@ -11,6 +11,41 @@ class AccessTokenEndpoint(Resource):
     # create_access_token() function is used to actually generate the JWT.
     def post(self):
         body = request.get_json() or {}
+        # accepts a username and a password from the body.
+        username = body.get('username')
+        password = body.get('password')
+
+        # query database for the user:
+        user = User.query.filter_by(username=username).one_or_none()
+
+        if user is None:
+            return Response(
+                json.dumps({
+                    'message': 'bad username'
+                }),
+                status=401
+            )
+
+        if user.check_password(password):
+            return Response(
+                json.dumps({
+                    'access_token': flask_jwt_extended.create_access_token(identity=user.id),
+                    'refresh_token': flask_jwt_extended.create_refresh_token(identity=user.id)
+                }),
+                status=200
+            )
+        else:
+            return Response(
+                json.dumps({
+                    'message': 'bad password'
+                }),
+                status=401
+            )
+
+        # check the database to make sure that this particular username and password combo
+        # are valid!
+        # If they are, return an access and refresh token
+        # otherwise, give them an error message
         print(body)
         '''
         if a matching user is found in the DB, encode the user's id in the JWT

@@ -3,6 +3,7 @@ from flask_restful import Resource
 import json
 from models import db, Comment, Post
 from views import get_authorized_user_ids
+import flask_jwt_extended
 
 class CommentListEndpoint(Resource):
 
@@ -30,6 +31,7 @@ class CommentListEndpoint(Resource):
         # # send the new data object to the user
         # return Response(json.dumps(new_post.to_dict()), mimetype="application/json", status=201)
     
+    @flask_jwt_extended.jwt_required()
     def post(self):
         # create a new "Comment" based on the data posted in the body 
         body = request.get_json()
@@ -80,6 +82,7 @@ class CommentDetailEndpoint(Resource):
     #     db.session.commit()
     #     return Response(json.dumps(None), mimetype="application/json", status=200)
   
+    @flask_jwt_extended.jwt_required()
     def delete(self, id):
         # delete "Comment" record where "id"=id
         print(id)
@@ -105,12 +108,12 @@ def initialize_routes(api):
         CommentListEndpoint, 
         '/api/comments', 
         '/api/comments/',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
 
     )
     api.add_resource(
         CommentDetailEndpoint, 
         '/api/comments/<int:id>', 
         '/api/comments/<int:id>/',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )

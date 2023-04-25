@@ -45,7 +45,7 @@ def user_lookup_callback(_jwt_header, jwt_data):
 # Initialize routes for all of your API endpoints:
 initialize_routes(api)
 
-# Server-side template for the homepage:
+@flask_jwt_extended.jwt_required()
 @app.route('/')
 def home():
     return '''
@@ -54,6 +54,7 @@ def home():
     '''
 
 
+@flask_jwt_extended.jwt_required()
 @app.route('/api')
 def api_docs():
     navigator = ApiNavigator(app.current_user)

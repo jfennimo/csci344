@@ -3,13 +3,14 @@ from flask_restful import Resource
 from models import Post, Following, db
 from views import get_authorized_user_ids
 import access_utils
+import flask_jwt_extended                       
 
 import json
 
 def get_path():
     return request.host_url + 'api/posts/'
 
-# I replaced my code with yours because I was getting unknown errors from mine even after combining it with your update.
+# I replaced my code with yours for hw08 because I was getting unknown errors from mine even after combining it with your update.
 # Thanks for helping us out so much with this one!
 
 class PostListEndpoint(Resource):
@@ -17,6 +18,7 @@ class PostListEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
 
+    @flask_jwt_extended.jwt_required()
     def get(self):
         me_and_my_friend_ids = access_utils.get_list_of_user_ids_in_my_network(self.current_user.id)
         try:
@@ -33,6 +35,7 @@ class PostListEndpoint(Resource):
         posts = Post.query.filter(Post.user_id.in_(me_and_my_friend_ids)).limit(limit)
         return Response(json.dumps([post.to_dict() for post in posts]), mimetype="application/json", status=200)
 
+    @flask_jwt_extended.jwt_required()
     def post(self):
         # request.get_json() is holding the data that the user
         # just sent over the network. Stored as a python dictionary
@@ -59,7 +62,7 @@ class PostDetailEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
         
-
+    @flask_jwt_extended.jwt_required()
     @access_utils.can_modify_or_404
     def patch(self, id):
         '''
@@ -87,13 +90,14 @@ class PostDetailEndpoint(Resource):
 
         return Response(json.dumps(post.to_dict()), mimetype="application/json", status=200)
 
-
+    @flask_jwt_extended.jwt_required()
     @access_utils.can_modify_or_404
     def delete(self, id):
         Post.query.filter_by(id=id).delete()
         db.session.commit()
         return Response(json.dumps(None), mimetype="application/json", status=200)
 
+    @flask_jwt_extended.jwt_required()
     @access_utils.can_view_or_404
     def get(self, id):
         # get the post based on the id
@@ -106,10 +110,10 @@ def initialize_routes(api):
     api.add_resource(
         PostListEndpoint, 
         '/api/posts', '/api/posts/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
     api.add_resource(
         PostDetailEndpoint, 
         '/api/posts/<int:id>', '/api/posts/<int:id>/',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )

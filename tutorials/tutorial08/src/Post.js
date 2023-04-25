@@ -37,16 +37,13 @@ export default function Post({post, token}) {
         setNewestComment(data.comments[data.comments.length - 1]);
     }
 
-    function openModal() {
-        // do I need this?
-    }
 
     if(actualComments === 0) {
         showComments = '';
     } 
 
     if(actualComments > 1) {
-        showComments = <section id="view-all-comments" onClick={openModal}> <button class="button">View all {actualComments} comments</button>
+        showComments = <section id="view-all-comments"> <button class="button">View all {actualComments} comments</button>
         <p>
             <strong>{newestComment.user.username} </strong> 
             {newestComment.text}

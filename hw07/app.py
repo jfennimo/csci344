@@ -8,10 +8,18 @@ import os
 from sqlalchemy import and_
 from models import db, Post, User, Following, ApiNavigator, Story
 from views import initialize_routes, get_authorized_user_ids
-import flask_jwt_extended                       
+import flask_jwt_extended           
+from lib.flask_multistatic import MultiStaticFlask as Flask
+from flask import send_from_directory   
 
 
 app = Flask(__name__)
+
+app.static_folder = [
+    os.path.join(app.root_path, 'react-client', 'build', 'static'),
+    os.path.join(app.root_path, 'static')
+]
+
 cors = CORS(app, 
     resources={r"/api/*": {"origins": '*'}}, 
     supports_credentials=True # new
@@ -30,9 +38,9 @@ app.config["JWT_COOKIE_SECURE"] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True 
 jwt = flask_jwt_extended.JWTManager(app)
 
-# set logged in user
-with app.app_context():
-    app.current_user = User.query.filter_by(id=12).one()
+# # set logged in user
+# with app.app_context():
+#     app.current_user = User.query.filter_by(id=12).one()
 
 # Include JWT starter code for querying the DB for user info:
 @jwt.user_lookup_loader
@@ -45,14 +53,11 @@ def user_lookup_callback(_jwt_header, jwt_data):
 # Initialize routes for all of your API endpoints:
 initialize_routes(api)
 
-@flask_jwt_extended.jwt_required()
 @app.route('/')
+# @decorators.jwt_or_login
 def home():
-    return '''
-       <p>View <a href="/api">REST API Tester</a>.</p>
-       <p>Feel free to replace this code from HW2</p>
-    '''
-
+    # https://medium.com/swlh/how-to-deploy-a-react-python-flask-project-on-heroku-edb99309311
+    return send_from_directory(app.root_path + '/react-client/build', 'index.html')
 
 @flask_jwt_extended.jwt_required()
 @app.route('/api')

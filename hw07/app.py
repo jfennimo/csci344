@@ -10,7 +10,7 @@ from models import db, Post, User, Following, ApiNavigator, Story
 from views import initialize_routes, get_authorized_user_ids
 import flask_jwt_extended           
 from lib.flask_multistatic import MultiStaticFlask as Flask
-from flask import send_from_directory   
+from flask import send_from_directory
 
 
 app = Flask(__name__)
@@ -59,13 +59,14 @@ def home():
     # https://medium.com/swlh/how-to-deploy-a-react-python-flask-project-on-heroku-edb99309311
     return send_from_directory(app.root_path + '/react-client/build', 'index.html')
 
-@flask_jwt_extended.jwt_required()
+
 @app.route('/api')
+@flask_jwt_extended.jwt_required()
 def api_docs():
-    navigator = ApiNavigator(app.current_user)
+    navigator = ApiNavigator(flask_jwt_extended.current_user)
     return render_template(
         'api/api_docs.html', 
-        user=app.current_user,
+        user=flask_jwt_extended.current_user,
         endpoints=navigator.get_endpoints(),
         url_root=request.url_root[0:-1] # trim trailing slash
     )

@@ -13,7 +13,7 @@ export default function Suggestion({ suggestion, token }) {
 
     async function requerySuggestion() {
         // get a fresh copy of the post
-            const response = await fetch(`/api/suggestions/${suggestion.id}`, {
+            const response = await fetch(`/api/suggestions/`, {
             method: "GET",
             headers: getHeaders(token)
         });

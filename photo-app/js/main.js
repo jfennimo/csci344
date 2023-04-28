@@ -8,8 +8,11 @@
 
 let token;
 const rootURL = 'https://photo-app-secured.herokuapp.com';
-const username = "joel";
-const password = "joel_password";
+// const username = "joel";
+// const password = "joel_password";
+
+const username = "webdev";
+const password = "password";
 
 async function getAccessToken(rootURL, username, password) {
     const postData = {
@@ -126,7 +129,7 @@ const showPosts = async () => {
 }
 
 const getLikeButton = post => {
-    if(post.current_user_like_id) {
+    if (post.current_user_like_id) {
         return `
         <button class="icon-button" aria-label="Like Button" onclick="unlikePost(${post.current_user_like_id}, ${post.id})" aria-checked="true">
             <i class="fas fa-heart"></i>
@@ -161,9 +164,9 @@ const getBookmarkButton = post => {
 
 const getSuggestions = suggestion => {
 
-    if (!suggestion.id) {
+    if (suggestion.curent_user_follow_id) {
         return `
-        <button role="switch" class="link_following" onclick="unFollowAccount(${suggestion.id})" aria-checked="true"
+        <button role="switch" class="link_following" onclick="unFollowAccount(${suggestion.curent_user_follow_id}, ${suggestion.id})" aria-checked="true"
         aria-label="Unfollow ${suggestion.username}">unfollow</button>
     `
     } else {
@@ -171,17 +174,17 @@ const getSuggestions = suggestion => {
         <button role="switch" class="link_following" onclick="followAccount(${suggestion.id})" aria-checked="false"
         aria-label="Follow ${suggestion.username}">follow</button>
     `
-    }    
+    }
 }
 
 const postToHtml = post => {
     const numComments = post.comments.length;
-    if(numComments == 0) {
+    if (numComments == 0) {
         showComments = '';
     } else {
 
         const newestComment = post.comments[numComments - 1];
-        if(numComments > 1) {
+        if (numComments > 1) {
             showComments = `<section id="view-all-comments" onclick="openModal(${post.id})"> <button class="button">View all ${numComments} comments</button></section>
             <p>
                 <strong>${newestComment.user.username}</strong> 
@@ -276,8 +279,8 @@ const modalInfo = async (id) => {
     const data = await response.json();
     console.log('Posts:', data);
 
-    document.querySelector('.modal-body').innerHTML = 
-    `<img class="fixed" src="${data.image_url}" />
+    document.querySelector('.modal-body').innerHTML =
+        `<img class="fixed" src="${data.image_url}" />
     <section class="the-comments">
         <div class="top">
             <img src="${data.user.image_url}">
@@ -299,7 +302,7 @@ const modalInfo = async (id) => {
 
 const modalComments = (data) => {
     document.querySelector('.row').insertAdjacentHTML('beforeend',
-    `
+        `
     <div>
     <p>
         <strong>${data.user.username}</strong> 
@@ -313,7 +316,7 @@ const modalComments = (data) => {
 
 // function ensures that if the tabbing gets to the end of the 
 // modal, it will loop back up to the beginning of the modal:
-document.addEventListener('focus', function(event) {
+document.addEventListener('focus', function (event) {
 
     const modalElement = document.querySelector('.modal-bg');
     console.log('focus');
@@ -343,21 +346,34 @@ const requeryRedraw = async (postID) => {
     targetElementAndReplace(`#post_${postID}`, htmlString);
 }
 
+// const followRedraw = async (user_id) => {
+//     const endpoint = `${rootURL}/api/following/`;
+//     const response = await fetch(endpoint, {
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': 'Bearer ' + token
+//         }
+//     })
+//     const data = await response.json();
+//     console.log(data);
+//     const htmlString = suggestionToHtml(user_id);
+//     targetElementAndReplace(`#suggestion_${user_id}`, htmlString);
+// }
 
-const followRedraw = async (suggestionID) => {
-    const endpoint = `${rootURL}/api/following/${suggestionID}`;
+const followRedraw = async (user_id) => {
+    const endpoint = `${rootURL}/api/suggestions/`;
     const response = await fetch(endpoint, {
+        method: "GET",
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
         }
     })
     const data = await response.json();
-    console.log(data);
-    const htmlString = suggestionToHtml(data);
-    targetElementAndReplace(`#suggestion_${suggestionID}`, htmlString);
+    console.log('Suggestions: ', data);
+    const htmlChunk = data.map(suggestionToHtml).join('')
+    document.querySelector('.suggestions').innerHTML = htmlChunk;
 }
-
 
 const createBookmark = async (postID) => {
     // define the endpoint:
@@ -457,11 +473,11 @@ const addComment = async (postID) => {
 }
 
 // CONTINUE HERE
-const followAccount = async (suggestionID) => {
+const followAccount = async (user_id) => {
     // define the endpoint:
     const endpoint = `${rootURL}/api/following/`;
     const postData = {
-        "user_id": suggestionID
+        "user_id": user_id
     };
 
     // Create the follow:
@@ -475,12 +491,13 @@ const followAccount = async (suggestionID) => {
     })
     const data = await response.json();
     console.log(data);
-    followRedraw(suggestionID);
+    console.log('User id: ' + user_id);
+    followRedraw(user_id);
 }
 
-const unfollowAccount = async (user_id, suggestionID) => {
+const unfollowAccount = async (followId, user_id) => {
     // define the endpoint:
-    const endpoint = `${rootURL}/api/following/${user_id}`;
+    const endpoint = `${rootURL}/api/following/${followId}`;
 
     // Delete the follow:
     const response = await fetch(endpoint, {
@@ -492,7 +509,7 @@ const unfollowAccount = async (user_id, suggestionID) => {
     })
     const data = await response.json();
     console.log(data);
-    followRedraw(suggestionID);
+    followRedraw(user_id);
 }
 
 

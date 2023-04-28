@@ -21,12 +21,13 @@ jwt = flask_jwt_extended.JWTManager(app)
 
 @app.route('/')
 def home():
-    # try:
-    #     # check if the access token is valid:
-    #     flask_jwt_extended.verify_jwt_in_request()
-    # except:
-    #     # otherwise, redirect to login screen:
-    #     return redirect('/login', 302)
+    try:
+        # check if the access token is valid:
+        flask_jwt_extended.verify_jwt_in_request()
+    except:
+        # otherwise, redirect to login screen:
+        return redirect('/login', 302)
+    
     return render_template(
         'index.html'
     )
@@ -34,23 +35,34 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # if the user has just submitted data to the server, 
+    # we are going to handle it
     if request.method == 'POST':
         print(request.form)
-        # # query the DB to make sure the person's email and password
-        # # are valid. If so, generate the JWT with the authenticated user's ID:
+        username = request.form.get('username')
+        password = request.form.get('password')
+        authorized = False
+        
+        # query the DB to make sure the person's email and password
+        # are valid. If so, generate the JWT with the authenticated user's ID:
+        if username == 'sarah' and password == 'hi':
+            authorized = True
+        if authorized:
+            # pretend the DB check was successful, and store the user's ID in a variable.
+            user_id = 12 
+            expires = datetime.timedelta(seconds=10)
 
-        # # pretend the DB check was successful, and store the user's ID in a variable.
-        # user_id = 12 
-        # expires = datetime.timedelta(seconds=10)
-
-        # # generate the token using the Flask JWT Extended library:
-        # access_token = flask_jwt_extended.create_access_token(
-        #     identity=user_id, 
-        #     expires_delta=expires
-        # )
-        response = make_response(redirect('/', 302))
-        # flask_jwt_extended.set_access_cookies(response, access_token)
-        return response
+            # generate the token using the Flask JWT Extended library:
+            access_token = flask_jwt_extended.create_access_token(
+                identity=user_id, 
+                expires_delta=expires
+            )
+            response = make_response(redirect('/', 302))
+            flask_jwt_extended.set_access_cookies(response, access_token)
+            return response
+        else:
+            response = make_response("Unauthorized", 403)
+            return response
     return render_template(
         'login.html'
     )

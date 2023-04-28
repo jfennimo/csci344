@@ -3,3 +3,4 @@ env
 venv
 .DS_Store
 node_modules
+*_pycache_

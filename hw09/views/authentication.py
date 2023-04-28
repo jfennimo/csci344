@@ -23,7 +23,7 @@ def login():
         if user is None:
             return render_template(
             'login.html',
-            message = 'Ussername not in databse'
+            message = 'Ussername not in database'
         )
         if user and not user.check_password(password):
             return render_template(
